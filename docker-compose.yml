@@ -1,0 +1,18 @@
+version: '3.1'
+services:
+  admin:
+    image: ${REGISTRY:-localhost:5001}/${REPOSITORY:-opdrachten/openstad-admin}:${VERSION:-latest}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SITE_ID: 1
+      API_URL: "http://localhost:8111"
+      USER_API: "http://localhost:4000"
+      IMAGE_API_URL: "http://localhost:9999"
+      SESSION_SECRET: "fbwygt4789wrybih"
+    expose:
+      - 7777
+    ports:
+      - 7777:7777
+    restart: unless-stopped
