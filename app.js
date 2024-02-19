@@ -59,6 +59,11 @@ const nunjucksEnv = nunjucks.configure('templates', {
 
 app.set('trust proxy', true);
 
+app.use((req, res, next) => {
+  console.log(`==> [${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+});
+
 const health = require('@cloudnative/health-connect');
 let healthcheck = new health.HealthChecker();
 

@@ -1,18 +1,22 @@
-const apiUrl  = process.env.API_URL;
+// const apiUrl  = process.env.API_URL;
+// for local debugging, use:
+const apiUrl = "http://app-openstad-api"
 const siteId  = process.env.SITE_ID;
 const fetch   = require('node-fetch');
 
 const fetchUserData = async(req, res, next) => {
-
+  console.log("==> fetchUserData wordt aangeroepen, met deze req.query:", req.query)
   const jwt = req.query.jwt ? req.query.jwt : req.session.jwt;
-
+  console.log("==> daar wordt deze jwt uit gehaald:", jwt)
   if (!jwt) {
+    console.log("==> Geen jwt gevonden")
     next();
   } else {
-
+    console.log("==> Dit zit er in de headers:", req.headers)
     const thisHost = req.headers['x-forwarded-host'] || req.get('host');
     const fullUrl = req.protocol + '://' + thisHost;
-
+    console.log("==> thisHost wordt dan:", thisHost)
+    console.log("==> deze fetch gaat gedaan worden, op url:", `${apiUrl}/oauth/site/${siteId}/me`)
     try {
       let response = await fetch(`${apiUrl}/oauth/site/${siteId}/me`, {
         headers: {
@@ -30,10 +34,12 @@ const fetchUserData = async(req, res, next) => {
       let user = await response.json();
 
       if (user) {
+        console.log("==> user gevonden:", user)
         req.user = user
         res.locals.user = user;
         return next();
       } else {
+        console.log("==> geen user gevonden")
         req.session.jwt = '';
 
         req.session.save(() => {
@@ -43,6 +49,7 @@ const fetchUserData = async(req, res, next) => {
 
     } catch(err) {
       // if not valid clear the JWT and redirect
+      console.log("==> error afgevangen: if not valid clear the JWT and redirect")
       req.session.jwt = '';
       req.session.save(() => {
         res.redirect('/');
