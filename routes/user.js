@@ -58,7 +58,8 @@ module.exports = function(app){
   //  userMw.withAll,
     (req, res) => {
       res.render('users/overview.html', {
-        apiUrl: `/admin/api/users`
+        apiUrl: `/admin/api/users`,
+        appUrl: process.env.APP_URL
       });
     }
   );
@@ -80,7 +81,9 @@ module.exports = function(app){
     roleMw.withAll,
     formatAuthClientsForSite,
     (req, res) => {
-      res.render('users/form.html');
+      res.render('users/form.html', {
+        appUrl: process.env.APP_URL
+      });
     }
   );
 
@@ -94,7 +97,9 @@ module.exports = function(app){
     userMw.withOne,
     formatAuthClientsForSite,
     (req, res) => {
-      res.render('users/form.html');
+      res.render('users/form.html', {
+        appUrl: process.env.APP_URL
+      });
     }
   );
 

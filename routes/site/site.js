@@ -75,7 +75,8 @@ module.exports = function(app){
       res.render('site/new-form.html', {
         externalSites: req.externalSites, wildcardHost: process.env.WILDCARD_HOST,
         existingDomainsString: req.sites.map(site => site.domain).join(','),
-        existingDomains: req.sites.map(site => site.domain)
+        existingDomains: req.sites.map(site => site.domain),
+        appUrl: process.env.APP_URL
       });
     }
   );
@@ -88,7 +89,8 @@ module.exports = function(app){
     (req, res, next) => {
       res.render('site/copy-form.html', {
         existingDomainsString: req.sites.map(site => site.domain).join(','),
-        existingDomains: req.sites.map(site => site.domain)
+        existingDomains: req.sites.map(site => site.domain),
+        appUrl: process.env.APP_URL
       });
     }
   );
@@ -101,7 +103,8 @@ module.exports = function(app){
     (req, res, next) => {
       res.render('site/import-form.html', {
         existingDomainsString: req.sites.map(site => site.domain).join(','),
-        existingDomains: req.sites.map(site => site.domain)
+        existingDomains: req.sites.map(site => site.domain),
+        appUrl: process.env.APP_URL
       });
     }
   );
@@ -116,7 +119,9 @@ module.exports = function(app){
     siteMw.addStats,
     userClientMw.withOneForSite,
     (req, res, next) => {
-      res.render('site/main.html');
+      res.render('site/main.html', {
+        appUrl: process.env.APP_URL
+      });
     }
   );
 
@@ -135,7 +140,8 @@ module.exports = function(app){
         userApiSettingFields: userApiSettingFields,
         userApiRequiredFields: userApiRequiredFields,
         twoFactorConfigureFields: twoFactorConfigureFields,
-        twoFactorValidateFields: twoFactorValidateFields
+        twoFactorValidateFields: twoFactorValidateFields,
+        appUrl: process.env.APP_URL
       });
     }
   );
@@ -152,7 +158,8 @@ module.exports = function(app){
         siteConfigSchema: siteConfigSchema,
         ideaFields: siteConfigSchema.ideas,
         anonymizeFields: siteConfigSchema.anonymize,
-        pageName: req.params.page
+        pageName: req.params.page,
+        appUrl: process.env.APP_URL
       });
     }
   );

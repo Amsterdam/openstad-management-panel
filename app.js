@@ -203,7 +203,8 @@ app.get('/admin',
   siteMw.withAll,
   (req, res) => {
     res.render('overview.html', {
-    sites: req.sites
+    sites: req.sites,
+    appUrl: process.env.APP_URL
   });
 });
 

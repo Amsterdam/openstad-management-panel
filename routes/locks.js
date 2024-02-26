@@ -40,6 +40,7 @@ module.exports = function(app){
       req.locks.map( lock => lock.createdAtHumanized = new Date(lock.createdAt).toLocaleString("nl-NL").replace(/(\d+:\d+):\d+$/, '$1') )
       res.render('locks/overview.html', {
         locks: req.locks,
+        appUrl: process.env.APP_URL
       });
     }
   );

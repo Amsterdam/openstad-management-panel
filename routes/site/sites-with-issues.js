@@ -18,7 +18,8 @@ module.exports = function(app){
       
       res.render('sites-with-issues/overview.html', {
         sites: req.sites,
-        issues
+        issues,
+        appUrl: process.env.APP_URL
       });
     }
   );

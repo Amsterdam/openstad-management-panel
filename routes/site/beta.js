@@ -10,7 +10,10 @@ module.exports = function(app){
     siteMw.withOne,
     (req, res) => {
       let openstadReactAdminCdn = app.get('openstadReactAdminCdn');
-      res.render('site/beta.html', { openstadReactAdminCdn });
+      res.render('site/beta.html', {
+        openstadReactAdminCdn,
+        appUrl: process.env.APP_URL
+      });
     }
   );
 

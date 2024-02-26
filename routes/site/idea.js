@@ -26,7 +26,9 @@ module.exports = function(app){
   app.get('/admin/site/:siteId/idea/import',
     siteMw.withOne,
     (req, res) => {
-      res.render('site/idea/import.html');
+      res.render('site/idea/import.html', {
+        appUrl: process.env.APP_URL
+      });
     }
   );
 
@@ -37,7 +39,9 @@ module.exports = function(app){
     ideaMw.oneForSite,
     siteMw.withOne,
     (req, res) => {
-      res.render('site/idea/edit.html');
+      res.render('site/idea/edit.html', {
+        appUrl: process.env.APP_URL
+      });
     }
   );
 
@@ -157,7 +161,9 @@ module.exports = function(app){
     ideaMw.oneForSite,
     siteMw.withOne,
     (req, res) => {
-      res.render('site/'+ req.params.page + '.html');
+      res.render('site/'+ req.params.page + '.html', {
+        appUrl: process.env.APP_URL
+      });
     }
   );
 }
