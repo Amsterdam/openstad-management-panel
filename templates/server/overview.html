@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block quickLinks %}
-<form action="/admin/set-ingress" method="POST">
+<form action="{{appUrl}}/admin/set-ingress" method="POST">
 <button class="btn btn-outline-primary btn-sm" >
     <i class="os-icon os-icon-window-content"></i>
     <span>Clean up all ingress</span>

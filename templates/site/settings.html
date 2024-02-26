@@ -19,7 +19,7 @@
   <div class="col-sm-9">
     <div class="card-container">
       <div class="card card-openstad">
-        <form method="POST" action="/admin/site/{{site.id}}">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}">
           <div class="form-group row">
             <label class="col-form-label col-sm-4" for="">Title</label>
             <div class="col-sm-8">
@@ -34,7 +34,7 @@
       </div>
 
       <div class="card card-openstad">
-        <form method="POST" action="/admin/site/{{site.id}}/url">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}/url">
           <div class="form-group row">
             <label class="col-form-label col-sm-4" for="">URL</label>
             <div class="col-sm-8">
@@ -49,7 +49,7 @@
       </div>
 
       <div class="card card-openstad">
-        <form method="POST" action="/admin/site/{{site.id}}">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}">
           <div class="form-group row">
             <label class="col-form-label col-sm-4" for="">Project end date</label>
             <div class="col-sm-8">
@@ -68,7 +68,7 @@
 
 {#
       <div class="card card-openstad">
-        <form method="POST" action="/admin/site/{{site.id}}">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}">
           <fieldset>
             <legend><span>E-mail settings for ideas & cms </span></legend>
           </fieldset>
@@ -79,7 +79,7 @@
         </form>
       </div>
       <div class="card card-openstad">
-        <form method="POST" action="/admin/site/{{site.id}}/user-api">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}/user-api">
           <fieldset>
             <legend><span>E-mail settings for auth </span></legend>
         <!--        <div class="form-group row">
@@ -102,7 +102,7 @@
         </form>
       </div>
       <div class="card card-openstad">
-        <form method="POST" action="/admin/site/{{site.id}}/user-api">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}/user-api">
           <fieldset>
             <legend><span>E-mail notications </span></legend>
         <!--        <div class="form-group row">
@@ -129,7 +129,7 @@
 #}
 
       <div class="card card-openstad">
-        <form method="POST" action="/admin/site/{{site.id}}">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}">
           <fieldset>
             <legend><span>{{ __('Widget settings') }}</span></legend>
             {{ renderFields(siteConfigSchema.widgetDisplaySettings, site.config.cms.widgetDisplaySettings, 'config[widgetDisplaySettings]') }}
@@ -143,7 +143,7 @@
       </div>
 
       <div class="card card-openstad">
-        <form method="POST" action="/admin/site/{{site.id}}">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}">
           <div class="form-group row">
             <label class="col-form-label col-sm-4" for="">Redirect deze site naar</label>
             <div class="col-sm-8">
@@ -164,7 +164,7 @@
         Let op! Deze actie is definitief en kan niet ongedaan gemaakt worden.<br/>
         Het project moet eerst aangemerkt staan als ‘beëindigd’ voordat deze actie uitgevoerd kan worden.<br/>
       </div>
-      <form method="POST" action="/admin/site/{{site.id}}/delete">
+      <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}/delete">
         <button class="btn btn-danger" type="submit" onclick="return confirm('{{__('Sure? It can not be undone')}}')" {{ 'disabled' if isDefaultSite }} >Website verwijderen</button>
         <input type="hidden" name="_csrf" value="{{csrfToken}}">
       </form>

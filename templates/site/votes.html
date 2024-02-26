@@ -2,11 +2,11 @@
 
 {% block quickLinks %}
 {#
-<a class="btn btn-outline-primary btn-sm" href="/admin/site/{{site.id}}/unique-code">
+<a class="btn btn-outline-primary btn-sm" href="{{appUrl}}/admin/site/{{site.id}}/unique-code">
   <i class="os-icon os-icon-window-content"></i>
   <span>Create unique codes</span>
 </a>
-<a class="btn btn-outline-primary btn-sm" href="/admin/site/{{site.id}}/unique-codes/export" target="_blank">
+<a class="btn btn-outline-primary btn-sm" href="{{appUrl}}/admin/site/{{site.id}}/unique-codes/export" target="_blank">
   <i class="os-icon os-icon-window-content"></i>
   <span>Export unique codes</span>
 </a>
@@ -37,10 +37,10 @@
               <tr class="{{'rejected' if vote.checked === false}}">
                  <td>{{ vote.id }}</td>
                  <td>{{ vote.createdAt | date}}</td>
-                 <td><a href="/admin/site/{{site.id}}/idea/{{ vote.ideaId }}" target="_blank">{{ vote.ideaId }}</a></td>
-                 <td><a href="/admin/user/{{vote.userId}}" target="_blank">{{ vote.userId }}</a></td>
+                 <td><a href="{{appUrl}}/admin/site/{{site.id}}/idea/{{ vote.ideaId }}" target="_blank">{{ vote.ideaId }}</a></td>
+                 <td><a href="{{appUrl}}/admin/user/{{vote.userId}}" target="_blank">{{ vote.userId }}</a></td>
                  <td>
-                   <a href="/admin/site/{{site.id}}/vote/{{vote.id}}/toggle">
+                   <a href="{{appUrl}}/admin/site/{{site.id}}/vote/{{vote.id}}/toggle">
                    {% if vote.checked === false %}
                       Approve
                    {% else %}

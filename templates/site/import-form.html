@@ -4,12 +4,12 @@
 
 {% block body %}
 <div class="card card-openstad" style="max-width: 700px; margin: 0 auto;">
-<form method="POST" id="create-site-form" action="/admin/site/import?_csrf={{csrfToken}}" enctype="multipart/form-data">
+<form method="POST" id="create-site-form" action="{{appUrl}}/admin/site/import?_csrf={{csrfToken}}" enctype="multipart/form-data">
   <div class="onboarding-slider-w">
     <div class="onboarding-slide">
       <div class="onboarding-side-by-side">
         <div class="onboarding-media">
-          <img alt="" src="/img/bigicon5.png" width="200px">
+          <img alt="" src="{{appUrl}}/img/bigicon5.png" width="200px">
         </div>
         <div class="onboarding-content with-gradient">
           <h4 class="onboarding-title">

@@ -24,7 +24,7 @@
             Let op! Deze actie is definitief en kan niet ongedaan gemaakt worden.<br/>
             Het project moet eerst aangemerkt staan als ‘beëindigd’ voordat deze actie uitgevoerd kan worden.<br/>
           </div>
-          <form method="POST" action="/admin/site/{{site.id}}/anonymize">
+          <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}/anonymize">
             <button class="btn btn-danger" type="submit" onclick="return confirm('{{__('Sure? It can not be undone')}}')" {{ 'disabled' if isDefaultSite }} >Gebruikersgegevens anonimiseren</button>
             <input type="hidden" name="_csrf" value="{{csrfToken}}">
           </form>
@@ -33,7 +33,7 @@
 
         <div class="card card-openstad">
           <legend><span>{{ __('Anonymize users settings') }}</span></legend>
-          <form method="POST" action="/admin/site/{{site.id}}">
+          <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}">
             {{ renderFields(anonymizeFields, site.config.anonymize, 'config[anonymize]') }}
             <div class="form-buttons-w">
               <button class="btn btn-outline-primary" type="submit">Opslaan</button>
@@ -43,7 +43,7 @@
         </div>
 
         <div class="card card-openstad">
-          <form method="POST" action="/admin/site/{{site.id}}">
+          <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}">
             <fieldset>
               <legend><span>{{ __('Email to users: account is about to expire') }}</span></legend>
               {{ renderFields(siteConfigSchema.inactiveWarningEmail, site.config.anonymize.inactiveWarningEmail, 'config[inactiveWarningEmail]') }}

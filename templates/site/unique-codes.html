@@ -1,11 +1,11 @@
 {% extends 'user-layout.html' %}
 
 {% block quickLinks %}
-<a class="btn btn-outline-primary btn-sm" href="/admin/site/{{site.id}}/unique-code">
+<a class="btn btn-outline-primary btn-sm" href="{{appUrl}}/admin/site/{{site.id}}/unique-code">
   <i class="os-icon os-icon-window-content"></i>
   <span>Create unique codes</span>
 </a>
-<a class="btn btn-outline-primary btn-sm" href="/admin/site/{{site.id}}/unique-codes/export" target="_blank">
+<a class="btn btn-outline-primary btn-sm" href="{{appUrl}}/admin/site/{{site.id}}/unique-codes/export" target="_blank">
   <i class="os-icon os-icon-window-content"></i>
   <span>Export unique codes</span>
 </a>
@@ -57,7 +57,7 @@
                <td>{{ uniqueCode.code }}</td>
                <td>{% if uniqueCode.userId %} {{ __('yes') }} {% else %} {{ __('no') }} {% endif %}</td>
                <td>
-                 <a href="/admin/site/{{site.id}}/unique-code/delete/{{uniqueCode.id}}" class="btn btn btn-outline-danger"> {{ __('delete') }} </a>
+                 <a href="{{appUrl}}/admin/site/{{site.id}}/unique-code/delete/{{uniqueCode.id}}" class="btn btn btn-outline-danger"> {{ __('delete') }} </a>
                </td>
             </tr>
             {% endfor %}

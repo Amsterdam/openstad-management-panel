@@ -1,17 +1,17 @@
 {% extends 'user-layout.html' %}
 
 {% block quickLinks %}
-<a class="btn btn-outline-primary btn-sm" href="/admin/site/{{site.id}}/idea">
+<a class="btn btn-outline-primary btn-sm" href="{{appUrl}}/admin/site/{{site.id}}/idea">
   <i class="os-icon os-icon-window-content"></i>
   <span>Maak een idee aan</span>
 </a>
 {#
 <!-- Use beta admin panel for import / export -->
-<a class="btn btn-outline-primary btn-sm" href="/admin/site/{{site.id}}/idea/import">
+<a class="btn btn-outline-primary btn-sm" href="{{appUrl}}/admin/site/{{site.id}}/idea/import">
   <i class="os-icon os-icon-window-content"></i>
   <span>Import</span>
 </a>
-<a class="btn btn-outline-primary btn-sm" href="/admin/site/{{site.id}}/idea/export">
+<a class="btn btn-outline-primary btn-sm" href="{{appUrl}}/admin/site/{{site.id}}/idea/export">
   <i class="os-icon os-icon-window-content"></i>
   <span>Export</span>
 </a>
@@ -44,7 +44,7 @@
                <th>{{ idea.yes }}</th>
                <th>{{ idea.no }}</th>
                <td>{{ idea.createdAt | date }}</td>
-               <td> <a href="/admin/site/{{site.id}}/idea/{{idea.id}}" > Bewerken </a> </td>
+               <td> <a href="{{appUrl}}/admin/site/{{site.id}}/idea/{{idea.id}}" > Bewerken </a> </td>
             </tr>
             {% endfor %}
          </tbody>

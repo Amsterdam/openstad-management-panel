@@ -1,7 +1,7 @@
 {% extends 'user-layout.html' %}
 
 {% block quickLinks %}
-<a class="btn btn-outline-primary btn-sm" href="/admin/site/{{site.id}}/idea">
+<a class="btn btn-outline-primary btn-sm" href="{{appUrl}}/admin/site/{{site.id}}/idea">
   <i class="os-icon os-icon-window-content"></i>
   <span>Maak een idee aan</span>
 </a>
@@ -17,7 +17,7 @@
       <div class="card card-openstad">
         <form
           method="POST"
-          action="/admin/site/{{site.id}}/idea/import"
+          action="{{appUrl}}/admin/site/{{site.id}}/idea/import"
           enctype="multipart/form-data"
         >
           <div class="form-group row">

@@ -120,11 +120,11 @@
                 </td>
                 <td class="text-right">
                   {% if site.config.cms.dbName %}
-                  <a class="btn btn-light " href="/admin/site/{{site.id}}">
+                  <a class="btn btn-light " href="{{appUrl}}/admin/site/{{site.id}}">
                     <span>beheer</span>
                   </a>
                   <br />
-                  <a class="btn btn-link btn-sm" href="/admin/site/{{site.id}}/beta">
+                  <a class="btn btn-link btn-sm" href="{{appUrl}}/admin/site/{{site.id}}/beta">
                     <small><span>beheer (beta)</span></small>
                   </a>
                   {% endif %}

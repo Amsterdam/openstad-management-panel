@@ -19,7 +19,7 @@
 
         <div class="card card-openstad">
           <legend><span>{{ __('Notification settings') }}</span></legend>
-          <form method="POST" action="/admin/site/{{site.id}}">
+          <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}">
             {{ renderFields(siteConfigSchema.notifications, site.config.notifications, 'config[notifications]') }}
             <div class="form-buttons-w">
               <button class="btn btn-outline-primary" type="submit">Opslaan</button>

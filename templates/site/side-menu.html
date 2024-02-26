@@ -3,26 +3,26 @@
 </h6>
 <ul class="nav flex-column">
   <li class="nav-item">
-    <a class="nav-link" href="/admin/site/{{site.id}}" >
+    <a class="nav-link" href="{{appUrl}}/admin/site/{{site.id}}" >
       <span data-feather="home"></span>
       <span> {{ __('Dashboard') }} </span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/admin/site/{{site.id}}/settings">
+    <a class="nav-link" href="{{appUrl}}/admin/site/{{site.id}}/settings">
       <span data-feather="settings"></span>
       <span> {{ __('Settings') }} </span>
     </a>
   </li>
   {% if userApiClient %}
   <li class="nav-item">
-    <a class="nav-link" href="/admin/site/{{site.id}}/security">
+    <a class="nav-link" href="{{appUrl}}/admin/site/{{site.id}}/security">
       <span data-feather="security"></span>
       <span> {{ __('Authentication & security') }} </span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/admin/site/{{site.id}}/unique-codes">
+    <a class="nav-link" href="{{appUrl}}/admin/site/{{site.id}}/unique-codes">
       <span data-feather="users"></span>
       <span> {{ __('Voting codes') }} </span>
     </a>
@@ -37,25 +37,25 @@
   </li>
   {% endif %}
   <li class="nav-item">
-    <a class="nav-link" href="/admin/site/{{site.id}}/ideas">
+    <a class="nav-link" href="{{appUrl}}/admin/site/{{site.id}}/ideas">
       <span data-feather="layers"></span>
       <span> {{ __('Ideas') }} </span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/admin/site/{{site.id}}/votes">
+    <a class="nav-link" href="{{appUrl}}/admin/site/{{site.id}}/votes">
       <span data-feather="layers"></span>
       <span> {{ __('Votes') }} </span>
     </a>
   </li>
   <li class="nav-item">
-  <a class="nav-link" href="/admin/site/{{site.id}}/newsletter-subscribers">
+  <a class="nav-link" href="{{appUrl}}/admin/site/{{site.id}}/newsletter-subscribers">
     <span data-feather="layers"></span>
     <span> {{ __('Newsletter subscribers') }} </span>
   </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/admin/site/{{site.id}}/export">
+    <a class="nav-link" href="{{appUrl}}/admin/site/{{site.id}}/export">
       <span data-feather="layers"></span>
       <span> {{ __('Export') }}  </span>
     </a>
