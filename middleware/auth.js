@@ -43,7 +43,7 @@ const fetchUserData = async(req, res, next) => {
         req.session.jwt = '';
 
         req.session.save(() => {
-          return res.redirect('/');
+          return res.redirect(process.env.APP_URL);
         })
       }
 
@@ -52,7 +52,7 @@ const fetchUserData = async(req, res, next) => {
       console.log("==> error afgevangen: if not valid clear the JWT and redirect")
       req.session.jwt = '';
       req.session.save(() => {
-        res.redirect('/');
+        res.redirect(process.env.APP_URL);
         return;
       })
     }
@@ -71,7 +71,7 @@ const ensureRights = (req, res, next) => {
     req.session.destroy(() => {
       let url = '/admin/login'
       // Set complete URL including domain for Amsterdam Azure implementation - 31415
-      url = process.env.APP_URL + '/' + url
+      url = process.env.APP_URL + url
       //req.flash('error', { msg: 'Sessie is verlopen of de huidige account heeft geen rechten'});
       if (req.originalUrl !== url) {
         res.redirect(url);
@@ -88,7 +88,7 @@ const ensureAuthenticated = (req, res, next) => {
   } else {
     let url = '/admin/login'
       // Set complete URL including domain for Amsterdam Azure implementation - 31415
-      url = process.env.APP_URL + '/' + url
+      url = process.env.APP_URL + url
     if (req.originalUrl !== url) {
       res.redirect(url);
     } else {
@@ -106,7 +106,7 @@ const check = (req, res, next) => {
 
     req.session.save(() => {
       // redirect to remove JWT from url, otherwise browser history will save JWT, allowing people to login.
-      res.redirect('/');
+      res.redirect(process.env.APP_URL);
     })
 
   } else {
