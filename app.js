@@ -75,7 +75,7 @@ app.get('/', (req, res) => {
   let url = '/admin'
 
   // Set complete URL including domain for Amsterdam Azure implementation - 31415
-  url = process.env.APP_URL + '/' + url
+  url = process.env.APP_URL + url
 
   res.redirect(url);
 });

@@ -99,7 +99,7 @@ module.exports = function(app){
     (req, res, next) => {
       ideaApi.delete(req.session.jwt, req.params.siteId, req.params.ideaId)
         .then(function (response) {
-           res.redirect(`/admin/site/${req.params.siteId}/ideas`);
+           res.redirect(`${appUrl}/admin/site/${req.params.siteId}/ideas`);
         })
         .catch(function (err) {
            res.redirect(req.header('Referer'));
@@ -141,7 +141,7 @@ module.exports = function(app){
         .then(function (response) {
           req.flash('success', { msg: 'Aangemaakt!'});
           req.session.save( () => {
-            res.redirect(`/admin/site/${req.params.siteId}/ideas`);
+            res.redirect(`${appUrl}/admin/site/${req.params.siteId}/ideas`);
           });
         })
         .catch(function (err) {

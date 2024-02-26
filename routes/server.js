@@ -31,7 +31,7 @@ module.exports = function(app){
 
       req.flash('success', { msg: 'Checked ingress' });
       req.session.save( () => {
-        res.redirect('/admin/server');
+        res.redirect(`${process.env.APP_URL}/admin/server`);
       });
     }
   );

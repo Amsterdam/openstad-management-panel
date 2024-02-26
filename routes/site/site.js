@@ -221,7 +221,7 @@ module.exports = function(app){
 
         req.flash('success', { msg: 'De site is succesvol aangemaakt'});
         req.session.save( () => {
-            res.redirect('/admin/site/' + site.id)
+            res.redirect(`${process.env.APP_URL}/admin/site/${site.id}`)
         });
 
       } catch (error) {
@@ -287,7 +287,7 @@ module.exports = function(app){
 
         req.flash('success', { msg: 'De site is succesvol aangemaakt'});
         req.session.save( () => {
-          res.redirect('/admin/site/' + site.id);
+          res.redirect(`${process.env.APP_URL}/admin/site/${site.id}`);
         });
       } catch(error) {
         console.error(error);
@@ -580,7 +580,7 @@ module.exports = function(app){
         .then((response) => {
           req.flash('success', { msg: 'Geannonimiseerd!'});
           req.session.save( () => {
-            res.redirect('/admin');
+            res.redirect(`${process.env.APP_URL}/admin`);
           });
         })
         .catch((err) => {
@@ -589,7 +589,7 @@ module.exports = function(app){
           let message = err && err.error && err.error.message ?  'Er gaat iets mis: '+ err.error.message : 'Er gaat iets mis!';
           req.flash('error', { msg: message});
           req.session.save( () => {
-            res.redirect('/admin');
+            res.redirect(`${process.env.APP_URL}/admin`);
           });
         });
     }
@@ -626,7 +626,7 @@ module.exports = function(app){
         .then( result => {
           req.flash('success', { msg: 'Verwijderd!'});
           req.session.save( () => {
-            res.redirect('/admin');
+            res.redirect(`${process.env.APP_URL}/admin`);
           });
         })
         .catch( err => {
@@ -635,7 +635,7 @@ module.exports = function(app){
           let message = err && err.error && err.error.message ?  'Er gaat iets mis: '+ err.error.message : 'Er gaat iets mis!';
           req.flash('error', { msg: message});
           req.session.save( () => {
-            res.redirect('/admin');
+            res.redirect(`${process.env.APP_URL}/admin`);
           });
         });
     }

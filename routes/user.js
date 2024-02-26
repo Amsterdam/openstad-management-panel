@@ -114,14 +114,14 @@ module.exports = function(app){
         .then((response) => {
           req.flash('success', { msg: 'Created user!' });
           req.session.save( () => {
-            res.redirect('/admin/users');
+            res.redirect(`${process.env.APP_URL}/admin/users`);
           });
         })
         .catch((err) => {
           let message = err && err.error && err.error.message ?  'Er gaat iets mis: '+ err.error.message : 'Er gaat iets mis!';
           req.flash('error', { msg: message });
           req.session.save( () => {
-            res.redirect('/admin/user');
+            res.redirect(`${process.env.APP_URL}/admin/user`);
           });
         })
     }
@@ -146,14 +146,14 @@ module.exports = function(app){
         .then((response) => {
           req.flash('success', { msg: 'Updated user!' });
           req.session.save( () => {
-            res.redirect('/admin/user/' + req.params.userId);
+            res.redirect(`${process.env.APP_URL}/admin/user/${req.params.userId}`);
           });
         })
         .catch((err) => {
           let message = err && err.error && err.error.message ?  'Er gaat iets mis: '+ err.error.message : 'Er gaat iets mis!';
           req.flash('error', { msg: message });
           req.session.save( () => {
-            res.redirect('/admin/user/' + req.params.userId);
+            res.redirect(`${process.env.APP_URL}/admin/user/${req.params.userId}`);
           });
         })
     }
@@ -169,14 +169,14 @@ module.exports = function(app){
         .then((response) => {
           req.flash('success', { msg: 'Deleted user!' });
           req.session.save( () => {
-            res.redirect('/admin/users');
+            res.redirect(`${process.env.APP_URL}/admin/users`);
           });
         })
         .catch((err) => {
           let message = err && err.error && err.error.message ?  'Er gaat iets mis: '+ err.error.message : 'Er gaat iets mis!';
           req.flash('error', { msg: message });
           req.session.save( () => {
-            res.redirect('/admin/users');
+            res.redirect(`${process.env.APP_URL}/admin/users`);
           });
         })
     }

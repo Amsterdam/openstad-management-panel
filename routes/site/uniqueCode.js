@@ -82,7 +82,7 @@ module.exports = function(app){
         .then(function (response) {
           req.flash('success', { msg: 'Codes worden aangemaakt!'});
           req.session.save( () => {
-            res.redirect('/admin/site/'+req.site.id+'/unique-codes'  || appUrl);
+            res.redirect(`${appUrl}/admin/site/${req.site.id}/unique-codes`  || appUrl);
           });
         })
         .catch(function (err) {

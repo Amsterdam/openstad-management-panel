@@ -65,7 +65,7 @@ module.exports = function(app){
         .then(function (response) {
           req.flash('success', { msg: 'Geimporteerd!'});
           req.session.save( () => {
-            res.redirect(`/admin/site/${req.params.siteId}/ideas`);
+            res.redirect(`${appUrl}/admin/site/${req.params.siteId}/ideas`);
             //      res.redirect(redirectTo);
           });
         })
