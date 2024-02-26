@@ -62,9 +62,12 @@ const fetchUserData = async(req, res, next) => {
 
 const ensureRights = (req, res, next) => {
    //if (req.user && req.user.role === 'admin')
+  console.log(`==> Starting auth.ensureRights middleware van de admin server`)
   if (req.isAuthenticated && req.user && req.user.role === 'admin') {
+    console.log(`==> ensureRights mw roept next() aan, want req.isAuthenticated (${req.isAuthenticated}) en req.user.role (${req.user.role}) `)
     next();
   } else {
+    console.log(`==> ensureRights mw gaat de session destroyen`)
     req.session.destroy(() => {
       let url = '/admin/login'
       // Set complete URL including domain for Amsterdam Azure implementation - 31415
@@ -78,7 +81,9 @@ const ensureRights = (req, res, next) => {
 }
 
 const ensureAuthenticated = (req, res, next) => {
+  console.log(`==> Starting auth.ensureAuthenticated middleware van de admin server`)
   if (req.isAuthenticated) {
+    console.log(`==> ensureAuthenticated mw roept next() aan, want req.isAuthenticated: ${req.isAuthenticated}`)
     next();
   } else {
     let url = '/admin/login'
