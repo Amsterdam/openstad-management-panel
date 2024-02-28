@@ -212,6 +212,8 @@ exports.createSite = async ({ user, dataDir, newSite, apiData, cmsData, oauthDat
       return new Promise(resolve => setTimeout(resolve, ms));
     }
 
+    console.log(`==> Admin server gaat een DNS check doen`)
+
     // in case localhost domain skip the DNS lookup, will otherwise fail
     const isDomainUp = newSite.getDomain().includes('localhost') ? true : await lookupDns(newSite.getDomain(), 3000);
 

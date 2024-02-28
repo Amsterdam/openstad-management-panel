@@ -244,6 +244,7 @@ module.exports = function(app){
     upload.single('import_file'),
     formatDomainFromBody,
     async (req, res, next) => {
+      console.log("==> Reached the Import Site async function")
       try {
 
         // domain
