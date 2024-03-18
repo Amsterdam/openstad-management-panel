@@ -58,7 +58,7 @@ module.exports = function(app){
   //  userMw.withAll,
     (req, res) => {
       res.render('users/overview.html', {
-        apiUrl: `/admin/api/users`,
+        apiUrl: `${process.env.APP_URL}/admin/api/users`,
         appUrl: process.env.APP_URL
       });
     }
