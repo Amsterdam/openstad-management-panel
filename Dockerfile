@@ -23,6 +23,9 @@ ENV PUBLIC_IP=""
 # Install all base dependencies.
 RUN apk add --no-cache --update g++ make python3 musl-dev bash mongodb-tools
 
+# For debugging
+RUN apk add curl
+
 # Set the working directory to the root of the container
 WORKDIR /home/app
 
