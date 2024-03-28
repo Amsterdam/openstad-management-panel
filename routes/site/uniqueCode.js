@@ -20,7 +20,7 @@ module.exports = function(app){
     uniqueCodeMw.getGeneratorStatus,
     (req, res) => {
       res.render('site/unique-codes.html', {
-        apiUrl: `/admin/site/${req.site.id}/api/unique-codes`,
+        apiUrl: `${process.env.APP_URL}/admin/site/${req.site.id}/api/unique-codes`,
         appUrl: process.env.APP_URL
       });
     }
