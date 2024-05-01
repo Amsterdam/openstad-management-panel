@@ -121,11 +121,15 @@ exports.writeDataToTmpDir = async function ({ exportDir, siteData, fromDomain })
  * @returns
  */
 exports.extractFileToTmpDir = async function ({ importDir, file, fileUrl }) {
-
+  console.log('===> Reached extractFileToTmpDir with the following values:')
+  console.log(`======> importDir: ${importDir}`)
+  console.log(`======> file: ${file}`)
+  console.log(`======> fileUrl: ${fileUrl}`)
   try {
 
     // fetch file?
     if (fileUrl) {
+      console.log('====> fileUrl found, trying to fetch the file')
       const fileContent = await fetch(fileUrl);
       let importId = Math.round(new Date().getTime() / 1000);
       file = {
@@ -139,6 +143,7 @@ exports.extractFileToTmpDir = async function ({ importDir, file, fileUrl }) {
 
     // write file to import dir
     const filename = importDir + '/' + file.originalname;
+    console.log(`===> Trying to write the file to the following filename: ${filename}`)
     await fs.writeFile(filename, file.buffer);
 
     // untar import file
