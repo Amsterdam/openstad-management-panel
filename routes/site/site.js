@@ -1,9 +1,11 @@
+const tmpDir = process.env.TMPDIR || './tmp';
+
 const slugify           = require('slugify');
 const fs                = require('fs').promises;
 const tar               = require('tar');
 const fetch             = require('node-fetch');
 const multer            = require('multer');
-const upload            = multer();
+const upload            = multer({ dest: tmpDir});
 
 //middleware
 const ideaMw            = require('../../middleware/idea');
@@ -42,7 +44,6 @@ const ensureUrlHasProtocol    = require('../../utils/ensureUrlHasProtocol');
 const formatBaseDomain        = require('../../utils/formatBaseDomain');
 
 
-const tmpDir = process.env.TMPDIR || './tmp';
 
 const formatDomainFromBody = (req, res, next) => {
   //main-domain + subdir
