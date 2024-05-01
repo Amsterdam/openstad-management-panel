@@ -22,8 +22,11 @@ exports.handleImportFile = async (newSite, file, fileUrl) => {
     }
   }
 
+  
   const filename = newSite.getTmpDir() + '/' + file.originalname;
-
+  
+  console.log(`===> The filename is: ${filename}`)
+  console.log(`===> Importing a file. Trying to crate e directory at: ${newSite.getTmpDir()}`)
   // createImportDir
   await fs.mkdir(newSite.getTmpDir());
 
