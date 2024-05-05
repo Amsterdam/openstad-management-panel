@@ -132,6 +132,7 @@ exports.extractFileToTmpDir = async function ({ importDir, file, fileUrl }) {
   console.log(`======> file.filename: ${file.filename}`)
   console.log(`======> file.path: ${file.path}`)
   console.log(`======> typeof file.buffer: ${typeof file.buffer}`)
+  console.log(`======> file.buffer: ${file.buffer}`)
   console.log(`======> fileUrl: ${fileUrl}`)
   try {
 
