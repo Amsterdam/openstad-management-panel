@@ -5,7 +5,8 @@ const fs                = require('fs').promises;
 const tar               = require('tar');
 const fetch             = require('node-fetch');
 const multer            = require('multer');
-const upload            = multer({ dest: tmpDir});
+const storage = multer.memoryStorage();
+const upload            = multer({ storage: storage});
 
 //middleware
 const ideaMw            = require('../../middleware/idea');
