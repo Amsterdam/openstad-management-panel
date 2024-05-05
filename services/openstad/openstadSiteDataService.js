@@ -28,8 +28,10 @@ const protocol = process.env.FORCE_HTTP ? 'http' : 'https';
  * @returns {Promise<SiteData>}
  */
 exports.collectData = async function({ uniqueSiteId, siteIdToCopy, includeChoiceGuide = false, includeCmsAttachments = true }) {
-
+  console.log(`====> Running collectData function in openstadSiteDataService`)
   const siteToCopy = await siteApi.fetch(siteIdToCopy);
+
+  console.log(`=====> siteToCopy oauth: ${siteToCopy.config && siteToCopy.config.oauth || {}}`)
 
   // TODO: Validate necessary site data.
   const [choiceGuides, attachments, oauthClients, mongoPath] = await Promise.all([
@@ -38,6 +40,8 @@ exports.collectData = async function({ uniqueSiteId, siteIdToCopy, includeChoice
     oauthProvider.getData(siteToCopy.config && siteToCopy.config.oauth || {}),
     cmsProvider.exportDatabase(uniqueSiteId, siteToCopy.config.cms.dbName)
   ]);
+
+  console.log(`======> oauthClients: ${oauthClients}`)
 
   return new SiteData(siteToCopy, choiceGuides, attachments, mongoPath, oauthClients);
 
