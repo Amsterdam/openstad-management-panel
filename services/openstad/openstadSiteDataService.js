@@ -125,18 +125,18 @@ exports.writeDataToTmpDir = async function ({ exportDir, siteData, fromDomain })
  * @returns
  */
 exports.extractFileToTmpDir = async function ({ importDir, file, fileUrl }) {
-  console.log('===> Reached extractFileToTmpDir with the following values:')
-  console.log(`======> importDir: ${importDir}`)
-  console.log(`======> file.fieldname: ${file.fieldname}`)
-  console.log(`======> file.originalname: ${file.originalname}`)
-  console.log(`======> file.encoding: ${file.encoding}`)
-  console.log(`======> file.mimetype: ${file.mimetype}`)
-  console.log(`======> file.size: ${file.size}`)
-  console.log(`======> file.destination: ${file.destination}`)
-  console.log(`======> file.filename: ${file.filename}`)
-  console.log(`======> file.path: ${file.path}`)
-  console.log(`======> typeof file.buffer: ${typeof file.buffer}`)
-  console.log(`======> fileUrl: ${fileUrl}`)
+  // console.log('===> Reached extractFileToTmpDir with the following values:')
+  // console.log(`======> importDir: ${importDir}`)
+  // console.log(`======> file.fieldname: ${file.fieldname}`)
+  // console.log(`======> file.originalname: ${file.originalname}`)
+  // console.log(`======> file.encoding: ${file.encoding}`)
+  // console.log(`======> file.mimetype: ${file.mimetype}`)
+  // console.log(`======> file.size: ${file.size}`)
+  // console.log(`======> file.destination: ${file.destination}`)
+  // console.log(`======> file.filename: ${file.filename}`)
+  // console.log(`======> file.path: ${file.path}`)
+  // console.log(`======> typeof file.buffer: ${typeof file.buffer}`)
+  // console.log(`======> fileUrl: ${fileUrl}`)
   try {
 
     // fetch file?
