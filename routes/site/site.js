@@ -193,6 +193,7 @@ module.exports = function(app){
         if (siteData.cmsData.attachments && siteData.cmsData.attachments.length) {
           let tmpData = { cmsData: { attachments: siteData.cmsData.attachments } };
           console.log(siteData.apiData.site.domain);
+          console.log(`=====> tmpData in copy site function: ${tmpData}`)
           let err = await openstadSiteDataService.writeDataToTmpDir({ exportDir, siteData: tmpData, fromDomain: siteData.apiData.site.domain });
           if (err) throw err;
         }
