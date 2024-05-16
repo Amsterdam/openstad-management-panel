@@ -193,7 +193,6 @@ module.exports = function(app){
         if (siteData.cmsData.attachments && siteData.cmsData.attachments.length) {
           let tmpData = { cmsData: { attachments: siteData.cmsData.attachments } };
           console.log(siteData.apiData.site.domain);
-          console.log(`=====> tmpData in copy site function: ${tmpData}`)
           let err = await openstadSiteDataService.writeDataToTmpDir({ exportDir, siteData: tmpData, fromDomain: siteData.apiData.site.domain });
           if (err) throw err;
         }
@@ -247,7 +246,6 @@ module.exports = function(app){
     upload.single('import_file'),
     formatDomainFromBody,
     async (req, res, next) => {
-      console.log("==> Reached the Import Site async function")
       try {
 
         // domain

@@ -28,10 +28,8 @@ const protocol = process.env.FORCE_HTTP ? 'http' : 'https';
  * @returns {Promise<SiteData>}
  */
 exports.collectData = async function({ uniqueSiteId, siteIdToCopy, includeChoiceGuide = false, includeCmsAttachments = true }) {
-  console.log(`====> Running collectData function in openstadSiteDataService`)
-  const siteToCopy = await siteApi.fetch(siteIdToCopy);
 
-  console.log(`=====> siteToCopy oauth: ${siteToCopy.config && siteToCopy.config.oauth || {}}`)
+  const siteToCopy = await siteApi.fetch(siteIdToCopy);
 
   // TODO: Validate necessary site data.
   const [choiceGuides, attachments, oauthClients, mongoPath] = await Promise.all([
@@ -40,8 +38,6 @@ exports.collectData = async function({ uniqueSiteId, siteIdToCopy, includeChoice
     oauthProvider.getData(siteToCopy.config && siteToCopy.config.oauth || {}),
     cmsProvider.exportDatabase(uniqueSiteId, siteToCopy.config.cms.dbName)
   ]);
-
-  console.log(`======> oauthClients: ${oauthClients}`)
 
   return new SiteData(siteToCopy, choiceGuides, attachments, mongoPath, oauthClients);
 
@@ -125,23 +121,11 @@ exports.writeDataToTmpDir = async function ({ exportDir, siteData, fromDomain })
  * @returns
  */
 exports.extractFileToTmpDir = async function ({ importDir, file, fileUrl }) {
-  // console.log('===> Reached extractFileToTmpDir with the following values:')
-  // console.log(`======> importDir: ${importDir}`)
-  // console.log(`======> file.fieldname: ${file.fieldname}`)
-  // console.log(`======> file.originalname: ${file.originalname}`)
-  // console.log(`======> file.encoding: ${file.encoding}`)
-  // console.log(`======> file.mimetype: ${file.mimetype}`)
-  // console.log(`======> file.size: ${file.size}`)
-  // console.log(`======> file.destination: ${file.destination}`)
-  // console.log(`======> file.filename: ${file.filename}`)
-  // console.log(`======> file.path: ${file.path}`)
-  // console.log(`======> typeof file.buffer: ${typeof file.buffer}`)
-  // console.log(`======> fileUrl: ${fileUrl}`)
+
   try {
 
     // fetch file?
     if (fileUrl) {
-      console.log('====> fileUrl found, trying to fetch the file')
       const fileContent = await fetch(fileUrl);
       let importId = Math.round(new Date().getTime() / 1000);
       file = {
@@ -155,7 +139,6 @@ exports.extractFileToTmpDir = async function ({ importDir, file, fileUrl }) {
 
     // write file to import dir
     const filename = importDir + '/' + file.originalname;
-    console.log(`===> Trying to write the file to the following filename: ${filename}`)
     await fs.writeFile(filename, file.buffer);
 
     // untar import file
@@ -228,8 +211,6 @@ exports.createSite = async ({ user, dataDir, newSite, apiData, cmsData, oauthDat
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
-
-    console.log(`==> Admin server gaat een DNS check doen`)
 
     // in case localhost domain skip the DNS lookup, will otherwise fail
     const isDomainUp = newSite.getDomain().includes('localhost') ? true : await lookupDns(newSite.getDomain(), 3000);

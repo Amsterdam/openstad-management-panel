@@ -58,7 +58,7 @@ exports.fetchAll = async(params) => {
 
 
 exports.create = async(data) => {
-  console.log(`==> Admin server gaat proberen een POST fetch te doen op ${apiUrl}/client, met deze volgende data: ${JSON.stringify(data)}`)
+
   try {
     let response = await fetch(`${apiUrl}/client`, {
       headers: {
