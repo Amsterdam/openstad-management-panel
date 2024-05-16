@@ -67,12 +67,7 @@ app.use('/ready', health.ReadinessEndpoint(healthcheck));
 app.use('/health', health.HealthEndpoint(healthcheck));
 
 app.get('/', (req, res) => {
-  let url = '/admin'
-
-  // Set complete URL including domain for Amsterdam Azure implementation - 31415
-  url = process.env.APP_URL + url
-
-  res.redirect(url);
+  res.redirect(`${process.env.APP_URL}/admin`);
 });
 
 // redirect the index page to the admin section
