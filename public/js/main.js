@@ -129,7 +129,7 @@ $(function () {
        { data: "email" },
        { data: "id",
          render: function (val) {
-           return `<a href="${process.env.APP_URL}/admin/user/${val}" target="_blank">Edit</a>`
+           return '<a href="' + process.env.APP_URL + '/admin/user/' + val + '" target="_blank">Edit</a>'
         }
       }
     ];
