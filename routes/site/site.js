@@ -1,9 +1,12 @@
+const tmpDir = process.env.TMPDIR || './tmp';
+
 const slugify           = require('slugify');
 const fs                = require('fs').promises;
 const tar               = require('tar');
 const fetch             = require('node-fetch');
 const multer            = require('multer');
-const upload            = multer();
+const storage = multer.memoryStorage();
+const upload            = multer({ storage: storage});
 
 //middleware
 const ideaMw            = require('../../middleware/idea');
@@ -42,7 +45,6 @@ const ensureUrlHasProtocol    = require('../../utils/ensureUrlHasProtocol');
 const formatBaseDomain        = require('../../utils/formatBaseDomain');
 
 
-const tmpDir = process.env.TMPDIR || './tmp';
 
 const formatDomainFromBody = (req, res, next) => {
   //main-domain + subdir
@@ -75,7 +77,8 @@ module.exports = function(app){
       res.render('site/new-form.html', {
         externalSites: req.externalSites, wildcardHost: process.env.WILDCARD_HOST,
         existingDomainsString: req.sites.map(site => site.domain).join(','),
-        existingDomains: req.sites.map(site => site.domain)
+        existingDomains: req.sites.map(site => site.domain),
+        appUrl: process.env.APP_URL
       });
     }
   );
@@ -88,7 +91,8 @@ module.exports = function(app){
     (req, res, next) => {
       res.render('site/copy-form.html', {
         existingDomainsString: req.sites.map(site => site.domain).join(','),
-        existingDomains: req.sites.map(site => site.domain)
+        existingDomains: req.sites.map(site => site.domain),
+        appUrl: process.env.APP_URL
       });
     }
   );
@@ -101,7 +105,8 @@ module.exports = function(app){
     (req, res, next) => {
       res.render('site/import-form.html', {
         existingDomainsString: req.sites.map(site => site.domain).join(','),
-        existingDomains: req.sites.map(site => site.domain)
+        existingDomains: req.sites.map(site => site.domain),
+        appUrl: process.env.APP_URL
       });
     }
   );
@@ -116,7 +121,9 @@ module.exports = function(app){
     siteMw.addStats,
     userClientMw.withOneForSite,
     (req, res, next) => {
-      res.render('site/main.html');
+      res.render('site/main.html', {
+        appUrl: process.env.APP_URL
+      });
     }
   );
 
@@ -135,7 +142,8 @@ module.exports = function(app){
         userApiSettingFields: userApiSettingFields,
         userApiRequiredFields: userApiRequiredFields,
         twoFactorConfigureFields: twoFactorConfigureFields,
-        twoFactorValidateFields: twoFactorValidateFields
+        twoFactorValidateFields: twoFactorValidateFields,
+        appUrl: process.env.APP_URL
       });
     }
   );
@@ -152,7 +160,8 @@ module.exports = function(app){
         siteConfigSchema: siteConfigSchema,
         ideaFields: siteConfigSchema.ideas,
         anonymizeFields: siteConfigSchema.anonymize,
-        pageName: req.params.page
+        pageName: req.params.page,
+        appUrl: process.env.APP_URL
       });
     }
   );
@@ -214,7 +223,7 @@ module.exports = function(app){
 
         req.flash('success', { msg: 'De site is succesvol aangemaakt'});
         req.session.save( () => {
-            res.redirect('/admin/site/' + site.id)
+            res.redirect(`${process.env.APP_URL}/admin/site/${site.id}`)
         });
 
       } catch (error) {
@@ -280,7 +289,7 @@ module.exports = function(app){
 
         req.flash('success', { msg: 'De site is succesvol aangemaakt'});
         req.session.save( () => {
-          res.redirect('/admin/site/' + site.id);
+          res.redirect(`${process.env.APP_URL}/admin/site/${site.id}`);
         });
       } catch(error) {
         console.error(error);
@@ -573,7 +582,7 @@ module.exports = function(app){
         .then((response) => {
           req.flash('success', { msg: 'Geannonimiseerd!'});
           req.session.save( () => {
-            res.redirect('/admin');
+            res.redirect(`${process.env.APP_URL}/admin`);
           });
         })
         .catch((err) => {
@@ -582,7 +591,7 @@ module.exports = function(app){
           let message = err && err.error && err.error.message ?  'Er gaat iets mis: '+ err.error.message : 'Er gaat iets mis!';
           req.flash('error', { msg: message});
           req.session.save( () => {
-            res.redirect('/admin');
+            res.redirect(`${process.env.APP_URL}/admin`);
           });
         });
     }
@@ -619,7 +628,7 @@ module.exports = function(app){
         .then( result => {
           req.flash('success', { msg: 'Verwijderd!'});
           req.session.save( () => {
-            res.redirect('/admin');
+            res.redirect(`${process.env.APP_URL}/admin`);
           });
         })
         .catch( err => {
@@ -628,7 +637,7 @@ module.exports = function(app){
           let message = err && err.error && err.error.message ?  'Er gaat iets mis: '+ err.error.message : 'Er gaat iets mis!';
           req.flash('error', { msg: message});
           req.session.save( () => {
-            res.redirect('/admin');
+            res.redirect(`${process.env.APP_URL}/admin`);
           });
         });
     }

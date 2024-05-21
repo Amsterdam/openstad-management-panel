@@ -67,7 +67,7 @@ app.use('/ready', health.ReadinessEndpoint(healthcheck));
 app.use('/health', health.HealthEndpoint(healthcheck));
 
 app.get('/', (req, res) => {
-  res.redirect('/admin');
+  res.redirect(`${process.env.APP_URL}/admin`);
 });
 
 // redirect the index page to the admin section
@@ -193,7 +193,8 @@ app.get('/admin',
   siteMw.withAll,
   (req, res) => {
     res.render('overview.html', {
-    sites: req.sites
+    sites: req.sites,
+    appUrl: process.env.APP_URL
   });
 });
 

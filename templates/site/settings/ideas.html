@@ -18,7 +18,7 @@
   <div class="col-sm-9">
     <div class="card-container">
       <div class="card card-openstad">
-        <form method="POST" action="/admin/site/{{site.id}}">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}">
           {{ renderFields(ideaFields, site.config.ideas, 'config[ideas]') }}
           <div class="form-buttons-w">
             <button class="btn btn-outline-primary" type="submit">Opslaan</button>
@@ -28,7 +28,7 @@
       </div>
       <div class="card card-openstad">
 
-        <form method="POST" action="/admin/site/{{site.id}}">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}">
           <fieldset>
               <legend><span>{{ __('Thank you e-mail ') }}</span></legend>
               {{ renderFields(siteConfigSchema.feedbackEmail, site.config.ideas.feedbackEmail, 'config[feedbackEmail]') }}
@@ -48,7 +48,7 @@
 
       <div class="card card-openstad">
 
-        <form method="POST" action="/admin/site/{{site.id}}">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}">
           <fieldset>
               <legend><span>{{ __('Submitted a concept plan e-mail ') }}</span></legend>
               {{ renderFields(siteConfigSchema.conceptEmail, site.config.ideas.conceptEmail, 'config[conceptEmail]') }}
@@ -68,7 +68,7 @@
 
       <div class="card card-openstad">
 
-        <form method="POST" action="/admin/site/{{site.id}}">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}">
           <fieldset>
               <legend><span>{{ __('Published a concept plan e-mail ') }}</span></legend>
               {{ renderFields(siteConfigSchema.conceptToPublishedEmail, site.config.ideas.conceptToPublishedEmail, 'config[conceptToPublishedEmail]') }}

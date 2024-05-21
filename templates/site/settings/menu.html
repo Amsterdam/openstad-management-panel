@@ -1,15 +1,15 @@
 <div class="ae-side-menu">
   <ul class="nav flex-column">
-    <li class="nav-item" {% if pageName === 'settings'%} class="active" {% endif %}> <a href="/admin/site/{{site.id}}/settings" class="nav-link">{{ __('General') }}</a> </li>
-    <li class="nav-item" {% if pageName === 'ideas'%} class="active" {% endif %}> <a href="/admin/site/{{site.id}}/settings/ideas" class="nav-link">{{ __('Ideas') }}</a> </li>
-    <li class="nav-item" {% if pageName === 'voting'%} class="active" {% endif %}> <a href="/admin/site/{{site.id}}/settings/voting" class="nav-link">{{ __('Voting') }}</a> </li>
-    <li class="nav-item"  {% if pageName === 'basic-auth'%} class="active" {% endif %}> <a href="/admin/site/{{site.id}}/settings/basic-auth" class="nav-link">{{ __('Password protection') }}</a> </li>
-    <li class="nav-item"  {% if pageName === 'basic-auth'%} class="active" {% endif %}> <a href="/admin/site/{{site.id}}/settings/anonymize" class="nav-link">{{ __('Anonymize users') }}</a> </li>
-    <li class="nav-item" {% if pageName === 'themes-areas'%} class="active" {% endif %}> <a href="/admin/site/{{site.id}}/settings/themes-areas" class="nav-link">{{ __('Themes & areas') }}</a> </li>
-    <li class="nav-item" {% if pageName === 'notifications'%} class="active" {% endif %}> <a href="/admin/site/{{site.id}}/settings/notifications" class="nav-link">{{ __('Admin notifications') }}</a> </li>
-    <li class="nav-item" {% if pageName === 'newsletter'%} class="active" {% endif %}> <a href="/admin/site/{{site.id}}/settings/newsletter" class="nav-link">{{ __('Newsletter') }}</a> </li>
-    <li class="nav-item" {% if pageName === 'vimeo'%} class="active" {% endif %}> <a href="/admin/site/{{site.id}}/settings/vimeo" class="nav-link">{{ __('Vimeo') }}</a> </li>
-    <li class="nav-item" {% if pageName === 'vimeo'%} class="active" {% endif %}> <a href="/admin/site/{{site.id}}/settings/ingress" class="nav-link">{{ __('Ingress') }}</a> </li>
+    <li class="nav-item" {% if pageName === 'settings'%} class="active" {% endif %}> <a href="{{appUrl}}/admin/site/{{site.id}}/settings" class="nav-link">{{ __('General') }}</a> </li>
+    <li class="nav-item" {% if pageName === 'ideas'%} class="active" {% endif %}> <a href="{{appUrl}}/admin/site/{{site.id}}/settings/ideas" class="nav-link">{{ __('Ideas') }}</a> </li>
+    <li class="nav-item" {% if pageName === 'voting'%} class="active" {% endif %}> <a href="{{appUrl}}/admin/site/{{site.id}}/settings/voting" class="nav-link">{{ __('Voting') }}</a> </li>
+    <li class="nav-item"  {% if pageName === 'basic-auth'%} class="active" {% endif %}> <a href="{{appUrl}}/admin/site/{{site.id}}/settings/basic-auth" class="nav-link">{{ __('Password protection') }}</a> </li>
+    <li class="nav-item"  {% if pageName === 'basic-auth'%} class="active" {% endif %}> <a href="{{appUrl}}/admin/site/{{site.id}}/settings/anonymize" class="nav-link">{{ __('Anonymize users') }}</a> </li>
+    <li class="nav-item" {% if pageName === 'themes-areas'%} class="active" {% endif %}> <a href="{{appUrl}}/admin/site/{{site.id}}/settings/themes-areas" class="nav-link">{{ __('Themes & areas') }}</a> </li>
+    <li class="nav-item" {% if pageName === 'notifications'%} class="active" {% endif %}> <a href="{{appUrl}}/admin/site/{{site.id}}/settings/notifications" class="nav-link">{{ __('Admin notifications') }}</a> </li>
+    <li class="nav-item" {% if pageName === 'newsletter'%} class="active" {% endif %}> <a href="{{appUrl}}/admin/site/{{site.id}}/settings/newsletter" class="nav-link">{{ __('Newsletter') }}</a> </li>
+    <li class="nav-item" {% if pageName === 'vimeo'%} class="active" {% endif %}> <a href="{{appUrl}}/admin/site/{{site.id}}/settings/vimeo" class="nav-link">{{ __('Vimeo') }}</a> </li>
+    <li class="nav-item" {% if pageName === 'vimeo'%} class="active" {% endif %}> <a href="{{appUrl}}/admin/site/{{site.id}}/settings/ingress" class="nav-link">{{ __('Ingress') }}</a> </li>
 
   </ul>
 </div>

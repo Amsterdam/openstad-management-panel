@@ -1,7 +1,7 @@
 {% extends 'user-layout.html' %}
 
 {% block quickLinks %}
-<a class="btn btn-outline-primary btn-sm" href="/admin/site/{{site.id}}/unique-codes/export" target="_blank">
+<a class="btn btn-outline-primary btn-sm" href="{{appUrl}}/admin/site/{{site.id}}/unique-codes/export" target="_blank">
   <i class="os-icon os-icon-window-content"></i>
   <span>Export unique codes</span>
 </a>
@@ -21,7 +21,7 @@
         </div>
         <form
         method="POST"
-        action="/admin/site/{{site.id}}/unique-codes/bulk"
+        action="{{appUrl}}/admin/site/{{site.id}}/unique-codes/bulk"
         >
           <div class="form-group row">
             <label class="col-form-label col-sm-4" for="">

@@ -26,7 +26,9 @@ module.exports = function(app){
   app.get('/admin/site/:siteId/idea/import',
     siteMw.withOne,
     (req, res) => {
-      res.render('site/idea/import.html');
+      res.render('site/idea/import.html', {
+        appUrl: process.env.APP_URL
+      });
     }
   );
 
@@ -37,7 +39,9 @@ module.exports = function(app){
     ideaMw.oneForSite,
     siteMw.withOne,
     (req, res) => {
-      res.render('site/idea/edit.html');
+      res.render('site/idea/edit.html', {
+        appUrl: process.env.APP_URL
+      });
     }
   );
 
@@ -95,7 +99,7 @@ module.exports = function(app){
     (req, res, next) => {
       ideaApi.delete(req.session.jwt, req.params.siteId, req.params.ideaId)
         .then(function (response) {
-           res.redirect(`/admin/site/${req.params.siteId}/ideas`);
+           res.redirect(`${appUrl}/admin/site/${req.params.siteId}/ideas`);
         })
         .catch(function (err) {
            res.redirect(req.header('Referer'));
@@ -137,7 +141,7 @@ module.exports = function(app){
         .then(function (response) {
           req.flash('success', { msg: 'Aangemaakt!'});
           req.session.save( () => {
-            res.redirect(`/admin/site/${req.params.siteId}/ideas`);
+            res.redirect(`${appUrl}/admin/site/${req.params.siteId}/ideas`);
           });
         })
         .catch(function (err) {
@@ -157,7 +161,9 @@ module.exports = function(app){
     ideaMw.oneForSite,
     siteMw.withOne,
     (req, res) => {
-      res.render('site/'+ req.params.page + '.html');
+      res.render('site/'+ req.params.page + '.html', {
+        appUrl: process.env.APP_URL
+      });
     }
   );
 }

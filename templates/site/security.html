@@ -12,7 +12,7 @@
       </h6>
       <div class="card card-openstad">
 
-        <form method="POST" action="/admin/site/{{site.id}}/user-api/name">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}/user-api/name">
           <fieldset>
             <legend><span>Authentication</span></legend>
 
@@ -42,7 +42,7 @@
         <div class="card card-openstad">
 
 
-        <form method="POST" action="/admin/site/{{site.id}}/user-api/settings">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}/user-api/settings">
           <fieldset>
             <legend><span>Settings</span></legend>
 
@@ -135,7 +135,7 @@
         id="config-general-settings"
         class="card card-openstad auth-type-form "
       >
-        <form method="POST" action="/admin/site/{{site.id}}/user-api">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}/user-api">
           <fieldset>
             <legend><span>{{ __('General settings') }}</span></legend>
           {{ renderFields(userApiSettingFields, userApiClient.config, 'config') }}
@@ -153,7 +153,7 @@
         id="config-required-fields"
         class="card card-openstad auth-type-form "
       >
-        <form method="POST" action="/admin/site/{{site.id}}/user-api">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}/user-api">
           <fieldset>
             <legend><span>{{ __('Required field text') }}</span></legend>
           {{ renderFields(userApiRequiredFields, userApiClient.config.requiredFields, 'config[requiredFields]') }}
@@ -177,7 +177,7 @@
         id="config-{{authType.key}}"
         class="card card-openstad auth-type-form "
       >
-        <form method="POST" action="/admin/site/{{site.id}}/user-api">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}/user-api">
           <fieldset>
             <legend><span> Configure {{authType.label}} </span></legend>
 
@@ -219,7 +219,7 @@
         id="config--two-factor"
         class="card card-openstad auth-type-form "
       >
-        <form method="POST" action="/admin/site/{{site.id}}/user-api">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}/user-api">
           <fieldset>
             <legend><span>{{ __('Two Factor') }}</span></legend>
             {{ renderFields(twoFactorValidateFields, userApiClient.config.twoFactor, 'config[twoFactor]') }}
@@ -236,7 +236,7 @@
               id="config-configure-two-factor"
               class="card card-openstad auth-type-form "
       >
-        <form method="POST" action="/admin/site/{{site.id}}/user-api">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}/user-api">
           <fieldset>
             <legend><span>{{ __('Configure Two Factor') }}</span></legend>
             {{ renderFields(twoFactorConfigureFields, userApiClient.config.configureTwoFactor, 'config[configureTwoFactor]') }}

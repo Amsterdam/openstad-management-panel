@@ -19,7 +19,7 @@
     <div class="card-container">
       <h3> {{ __('Settings for Ideas') }}
       <div class="card card-openstad">
-        <form method="POST" action="/admin/site/{{site.id}}">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}">
           {{ renderFields(siteConfigSchema.notifications, site.config, 'config') }}
           <div class="form-buttons-w">
             <button class="btn btn-outline-primary" type="submit">Opslaan</button>

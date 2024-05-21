@@ -15,7 +15,7 @@ module.exports = function(app){
           req.flash('succes', { msg: 'Lock verwijderd'});
           console.log('Ok');
           req.session.save( () => {
-            res.redirect('/admin/locks');
+            res.redirect(`${process.env.APP_URL}/admin/locks`);
           });
         })
         .catch((err) => {
@@ -23,7 +23,7 @@ module.exports = function(app){
           console.log('ERROR');
           console.log(err);
           req.session.save( () => {
-            res.redirect('/admin/locks');
+            res.redirect(`${process.env.APP_URL}/admin/locks`);
           });
         });
 
@@ -40,6 +40,7 @@ module.exports = function(app){
       req.locks.map( lock => lock.createdAtHumanized = new Date(lock.createdAt).toLocaleString("nl-NL").replace(/(\d+:\d+):\d+$/, '$1') )
       res.render('locks/overview.html', {
         locks: req.locks,
+        appUrl: process.env.APP_URL
       });
     }
   );

@@ -20,7 +20,8 @@ module.exports = function(app){
     uniqueCodeMw.getGeneratorStatus,
     (req, res) => {
       res.render('site/unique-codes.html', {
-        apiUrl: `/admin/site/${req.site.id}/api/unique-codes`
+        apiUrl: `${process.env.APP_URL}/admin/site/${req.site.id}/api/unique-codes`,
+        appUrl: process.env.APP_URL
       });
     }
   );
@@ -44,7 +45,7 @@ module.exports = function(app){
     siteMw.addAuthClientId,
     userClientMw.withOneForSite,
     uniqueCodeMw.withAllForClient,
-    (req, res) => { res.render('site/unique-code-form.html'); }
+    (req, res) => { res.render('site/unique-code-form.html', {appUrl: process.env.APP_URL}); }
   );
 
   /**
@@ -81,7 +82,7 @@ module.exports = function(app){
         .then(function (response) {
           req.flash('success', { msg: 'Codes worden aangemaakt!'});
           req.session.save( () => {
-            res.redirect('/admin/site/'+req.site.id+'/unique-codes'  || appUrl);
+            res.redirect(`${appUrl}/admin/site/${req.site.id}/unique-codes`  || appUrl);
           });
         })
         .catch(function (err) {

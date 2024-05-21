@@ -20,7 +20,9 @@ module.exports = function(app) {
     voteMw.allForSite,
     userClientMw.withOneForSite,
     (req, res, next) => {
-      res.render(`site/votes.html`);
+      res.render(`site/votes.html`, {
+        appUrl: process.env.APP_URL
+      });
     }
   );
 

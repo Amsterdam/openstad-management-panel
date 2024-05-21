@@ -27,9 +27,9 @@
       <div class="card card-openstad">
         <form method="POST"
         {% if idea %}
-        action="/admin/site/{{site.id}}/idea/{{idea.id}}"
+        action="{{appUrl}}/admin/site/{{site.id}}/idea/{{idea.id}}"
         {% else %}
-        action="/admin/site/{{site.id}}/idea"
+        action="{{appUrl}}/admin/site/{{site.id}}/idea"
         {% endif %}
 
         >
@@ -60,7 +60,7 @@
 
 
       <div class="card card-openstad">
-        <form method="POST" action="/admin/site/{{site.id}}/idea/{{idea.id}}/delete">
+        <form method="POST" action="{{appUrl}}/admin/site/{{site.id}}/idea/{{idea.id}}/delete">
           <button class="btn btn-danger" type="submit">Verwijder</button>
           <input type="hidden" name="_csrf" value="{{csrfToken}}">
         </form>

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block quickLinks %}
-<a class="btn btn-outline-primary btn-sm" href="/admin/user">
+<a class="btn btn-outline-primary btn-sm" href="{{appUrl}}/admin/user">
   <i class="os-icon os-icon-window-content"></i>
   <span>Nieuwe gebruiker</span>
 </a>
@@ -39,7 +39,7 @@
                 <td> {{user.lastName}} </td>
                 <td> {{user.email}} </td>
                 <td>
-                  <a href="/admin/user/{{user.id}}" target="_blank">
+                  <a href="{{appUrl}}/admin/user/{{user.id}}" target="_blank">
                     Bewerken
                   </a>
                 </td>

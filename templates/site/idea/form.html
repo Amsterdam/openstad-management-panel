@@ -2,9 +2,9 @@
 
 <form method="POST"
   {% if idea %}
-  action="/admin/site/{{site.id}}/idea/{{idea.id}}"
+  action="{{appUrl}}/admin/site/{{site.id}}/idea/{{idea.id}}"
   {% else %}
-  action="/admin/site/{{site.id}}/idea"
+  action="{{appUrl}}/admin/site/{{site.id}}/idea"
   {% endif %}
   class="validate-form"
 >

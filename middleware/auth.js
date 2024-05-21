@@ -1,18 +1,16 @@
-const apiUrl  = process.env.API_URL;
+// const apiUrl  = process.env.API_URL;
+// for local debugging, use:
+const apiUrl = "http://app-openstad-api"
 const siteId  = process.env.SITE_ID;
 const fetch   = require('node-fetch');
 
 const fetchUserData = async(req, res, next) => {
-
   const jwt = req.query.jwt ? req.query.jwt : req.session.jwt;
-
   if (!jwt) {
     next();
   } else {
-
     const thisHost = req.headers['x-forwarded-host'] || req.get('host');
     const fullUrl = req.protocol + '://' + thisHost;
-
     try {
       let response = await fetch(`${apiUrl}/oauth/site/${siteId}/me`, {
         headers: {
@@ -37,7 +35,7 @@ const fetchUserData = async(req, res, next) => {
         req.session.jwt = '';
 
         req.session.save(() => {
-          return res.redirect('/');
+          return res.redirect(process.env.APP_URL);
         })
       }
 
@@ -45,7 +43,7 @@ const fetchUserData = async(req, res, next) => {
       // if not valid clear the JWT and redirect
       req.session.jwt = '';
       req.session.save(() => {
-        res.redirect('/');
+        res.redirect(process.env.APP_URL);
         return;
       })
     }
@@ -59,9 +57,10 @@ const ensureRights = (req, res, next) => {
     next();
   } else {
     req.session.destroy(() => {
+      const url = `${process.env.APP_URL}/admin/login`
       //req.flash('error', { msg: 'Sessie is verlopen of de huidige account heeft geen rechten'});
-      if (req.originalUrl !== '/admin/login') {
-        res.redirect('/admin/login');
+      if (req.originalUrl !== url) {
+        res.redirect(url);
       }
     });
   }
@@ -71,8 +70,9 @@ const ensureAuthenticated = (req, res, next) => {
   if (req.isAuthenticated) {
     next();
   } else {
-    if (req.originalUrl !== '/admin/login') {
-      res.redirect('/admin/login');
+    const url = `${process.env.APP_URL}/admin/login`
+    if (req.originalUrl !== url) {
+      res.redirect(url);
     } else {
       next();
     }
@@ -88,7 +88,7 @@ const check = (req, res, next) => {
 
     req.session.save(() => {
       // redirect to remove JWT from url, otherwise browser history will save JWT, allowing people to login.
-      res.redirect('/');
+      res.redirect(process.env.APP_URL);
     })
 
   } else {

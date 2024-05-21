@@ -51,7 +51,9 @@ module.exports = function(app){
     userClientMw.withOneForSite,
     newsletterMw.allForSite,
     (req, res, next) => {
-      res.render(`site/newsletter-subscribers.html`);
+      res.render(`site/newsletter-subscribers.html`, {
+        appUrl: process.env.APP_URL
+      });
     }
   );
 

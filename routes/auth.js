@@ -4,7 +4,9 @@ const siteId = process.env.SITE_ID;
 
 module.exports = function(app){
   app.get('/admin/login', (req, res, next) => {
-    res.render('login.html');
+    res.render('login.html', {
+      appUrl
+    });
   });
 
   app.get('/admin/oauth/login', (req, res, next) => {
@@ -15,7 +17,7 @@ module.exports = function(app){
 
   app.get('/admin/logout', (req, res, next) => {
     req.session.destroy(() => {
-      res.redirect('/');
+      res.redirect(appUrl);
     });
   });
 };

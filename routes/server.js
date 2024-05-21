@@ -15,7 +15,8 @@ module.exports = function(app){
       console.log('All ingresses found, ingresses', ingresses)
 
       res.render('server/overview.html', {
-        ingresses: ingresses
+        ingresses: ingresses,
+        appUrl: process.env.APP_URL
       });
     }
   );
@@ -30,7 +31,7 @@ module.exports = function(app){
 
       req.flash('success', { msg: 'Checked ingress' });
       req.session.save( () => {
-        res.redirect('/admin/server');
+        res.redirect(`${process.env.APP_URL}/admin/server`);
       });
     }
   );
