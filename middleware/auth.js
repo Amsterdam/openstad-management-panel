@@ -57,9 +57,7 @@ const ensureRights = (req, res, next) => {
     next();
   } else {
     req.session.destroy(() => {
-      let url = '/admin/login'
-      // Set complete URL including domain for Amsterdam Azure implementation - 31415
-      url = process.env.APP_URL + url
+      const url = `${process.env.APP_URL}/admin/login`
       //req.flash('error', { msg: 'Sessie is verlopen of de huidige account heeft geen rechten'});
       if (req.originalUrl !== url) {
         res.redirect(url);
@@ -72,9 +70,7 @@ const ensureAuthenticated = (req, res, next) => {
   if (req.isAuthenticated) {
     next();
   } else {
-    let url = '/admin/login'
-      // Set complete URL including domain for Amsterdam Azure implementation - 31415
-      url = process.env.APP_URL + url
+    const url = `${process.env.APP_URL}/admin/login`
     if (req.originalUrl !== url) {
       res.redirect(url);
     } else {
