@@ -171,7 +171,6 @@ const getIngressBody = (ingressName, domain, addWww, secretName) => {
       },
       name: ingressName,
       annotations: {
-        'kubernetes.io/ingress.class': 'nginx',
         'nginx.ingress.kubernetes.io/from-to-www-redirect': "true",
         'nginx.ingress.kubernetes.io/proxy-body-size': '128m',
         'nginx.ingress.kubernetes.io/configuration-snippet': `more_set_headers "X-Content-Type-Options: nosniff";
@@ -181,6 +180,7 @@ more_set_headers "Referrer-Policy: same-origin";`
       }
     },
     spec: {
+      ingressClassName: 'nginx',
       rules: [{
         host: domain,
         http: {
@@ -431,17 +431,25 @@ exports.ensureIngressForAllDomains = async () => {
 const processIngressForDomain = async (domain, sites, ingressName) => {
   console.log('start processIngressForDomain');
 
+  const skipDNSCheck = process.env.SKIP_DNS_CHECK === 'true';
+
   const sitesForDomain = getSitesForDomain(sites, domain);
   const addWww = shouldDomainHaveWww(sites, domain);
 
   let ipAddressForDomain;
   let ipAddressForWWWDomain;
 
-  try {
-    ipAddressForDomain = await dnsLookUp(domain);
-    ipAddressForWWWDomain = await dnsLookUp('www.' + domain);
-  } catch(e ) {
-    console.log('Error checking dns for domain', domain);
+  if (skipDNSCheck === false) {
+    try {
+      ipAddressForDomain = await dnsLookUp(domain);
+      ipAddressForWWWDomain = await dnsLookUp('www.' + domain);
+    } catch(e ) {
+      console.log('Error checking dns for domain', domain);
+    }
+  } else {
+    console.log('Skip DNS check')
+    ipAddressForDomain = serverPublicIP
+    ipAddressForWWWDomain = serverPublicIP
   }
 
   const dnsIsSet = ipAddressForDomain && ipAddressForDomain === serverPublicIP;
