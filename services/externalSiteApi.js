@@ -1,8 +1,8 @@
 const fetch = require('node-fetch');
 const apiUrl =
   process.env.EXTERNAL_SITE_REPO || process.env.API_URL
-    ? `${process.env.API_URL}/api/repo`
-    : undefined || 'https://api.openstad.amsterdam.nl/api/repo';
+    ? `${process.env.API_URL}/api/template/site`
+    : undefined || 'https://openstad.amsterdam.nl/api/api/template/site';
 const siteApiKey = process.env.SITE_API_KEY;
 
 exports.fetchAll = async () => {
