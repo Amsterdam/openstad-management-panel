@@ -457,6 +457,7 @@ module.exports = function(app){
 
       // sites can run on domain.com/site1, but when checking domain should be only base domain
       const baseDomain = formatBaseDomain(domain);
+      const baseApiDomain = formatBaseDomain(apiDomain);
 
       const domainWithProtocol = ensureUrlHasProtocol(req.body.productionUrl).toLowerCase();
 
@@ -469,7 +470,7 @@ module.exports = function(app){
     ///  siteData.config.cms.url = siteData.config.cms.url ? [domain] : [];
 
 
-      siteData.config.allowedDomains = baseDomain ? [baseDomain] : [];
+      siteData.config.allowedDomains = baseDomain ? [baseDomain, baseApiDomain] : [];
       // update CMS urls
       if (siteData.config.cms) {
         siteData.config.cms.url = domainWithProtocol;
@@ -481,7 +482,7 @@ module.exports = function(app){
 
       if (req.userApiClient)  {
         const clientData = req.userApiClient;
-        clientData.allowedDomains = [domain, apiDomain];
+        clientData.allowedDomains = [domain, baseApiDomain];
         clientData.siteUrl = domainWithProtocol;
         clientData.redirectUrl = domainWithProtocol;
         clientData.config.backUrl = domainWithProtocol;
