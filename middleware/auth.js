@@ -1,6 +1,4 @@
-// const apiUrl  = process.env.API_URL;
-// for local debugging, use:
-const apiUrl = "http://app-openstad-api"
+const apiUrl  = process.env.API_URL;
 const siteId  = process.env.SITE_ID;
 const fetch   = require('node-fetch');
 
