@@ -79,6 +79,7 @@
             </label>
             <div class="col-sm-8">
               <div class="row">
+                {% set enforcedTwoFactorRoles = ["admin", "moderator", "editor"] %}
                 {% for role in roles %}
                 <div class="col-sm-6">
                   <input
@@ -88,6 +89,9 @@
                       value="{{role.name}}"
                       {% if (userApiClient.twoFactorRoles) and (role.name in userApiClient.twoFactorRoles) %}
                       checked
+                      {% endif %}
+                      {% if role.name in enforcedTwoFactorRoles %}
+                      disabled
                       {% endif %}
                   />
                   <label for="checkbox-auth-{{role.id}}">
