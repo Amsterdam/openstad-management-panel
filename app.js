@@ -128,7 +128,7 @@ const sessionSettings = {
   //store             : new MemoryStore(),
   key               : 'authorization.sid',
   cookie            : {
-    maxAge:  3600000 * 24 * 7 ,
+    maxAge:  1000 * 60 * 1 , // temporarily 1 minute for testing purposes
     secure: process.env.COOKIE_SECURE_OFF === 'yes' ? false : true,
     httpOnly: true,
     sameSite: false,
