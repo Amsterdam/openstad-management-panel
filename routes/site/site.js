@@ -74,7 +74,9 @@ module.exports = function(app){
     siteMw.withAll,
     externalSiteMw.withAll,
     (req, res, next) => {
-      const whitelistedEmails = process.env.WHITELISTED_EMAILS.split('\n');
+      const whitelistedEmails = process.env.WHITELISTED_EMAILS
+        .split('\n')
+        .filter(email => email.trim() !== ''); // remove any empty strings
 
       res.render('site/new-form.html', {
         externalSites: req.externalSites, wildcardHost: process.env.WILDCARD_HOST,
@@ -92,8 +94,9 @@ module.exports = function(app){
   app.get('/admin/site-copy',
     siteMw.withAll,
     (req, res, next) => {
-      const whitelistedEmails = process.env.WHITELISTED_EMAILS.split('\n');
-      console.log('Whitelisted Emails:', whitelistedEmails);
+      const whitelistedEmails = process.env.WHITELISTED_EMAILS
+        .split('\n')
+        .filter(email => email.trim() !== ''); // remove any empty strings
 
       res.render('site/copy-form.html', {
         existingDomainsString: req.sites.map(site => site.domain).join(','),

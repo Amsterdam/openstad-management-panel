@@ -237,7 +237,7 @@ exports.configSchema = {
     {
       key: 'fromAddress',
       type: 'dropdown',
-      options: process.env.WHITELISTED_EMAILS.split('\n'),
+      options: process.env.WHITELISTED_EMAILS.split('\n').slice(0, -1), // Slice off the empty string at the end
       default: process.env.WHITELISTED_EMAILS.split('\n')[0],
       label: 'From e-mail address',
       trim: true,
