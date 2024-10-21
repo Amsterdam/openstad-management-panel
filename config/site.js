@@ -1,3 +1,5 @@
+const whitelistedEmails = process.env.WHITELISTED_EMAILS.split('\n').slice(0, -1);
+
 exports.configSchema = {
   project: [
     {
@@ -143,8 +145,9 @@ exports.configSchema = {
     {
       parentKey: 'ideas',
       key: 'from',
-      type: 'string', // todo: add type email/list of emails
-      default: '',
+      type: 'dropdown',
+      options: whitelistedEmails,
+      default: whitelistedEmails[0],
       label: "From Address"
     },
     {
@@ -167,8 +170,9 @@ exports.configSchema = {
     {
       parentKey: 'ideas',
       key: 'from',
-      type: 'string', // todo: add type email/list of emails
-      default: '',
+      type: 'dropdown',
+      options: whitelistedEmails,
+      default: whitelistedEmails[0],
       label: "From Address"
     },
     {
@@ -191,8 +195,9 @@ exports.configSchema = {
     {
       parentKey: 'ideas',
       key: 'from',
-      type: 'string', // todo: add type email/list of emails
-      default: '',
+      type: 'dropdown',
+      options: whitelistedEmails,
+      default: whitelistedEmails[0],
       label: "From Address"
     },
     {
@@ -237,8 +242,8 @@ exports.configSchema = {
     {
       key: 'fromAddress',
       type: 'dropdown',
-      options: process.env.WHITELISTED_EMAILS.split('\n').slice(0, -1), // Slice off the empty string at the end
-      default: process.env.WHITELISTED_EMAILS.split('\n')[0],
+      options: whitelistedEmails,
+      default: whitelistedEmails[0],
       label: 'From e-mail address',
       trim: true,
     },
