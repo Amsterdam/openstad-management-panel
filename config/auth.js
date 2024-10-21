@@ -268,8 +268,9 @@ const userApiSettingFields = [
     },
     {
         key: 'fromEmail',
-        type: 'string',
-        default: '',
+        type: 'dropdown',
+        options: process.env.WHITELISTED_EMAILS.split('\n'),
+        default: process.env.WHITELISTED_EMAILS.split('\n')[0],
         label: "Email address for outgoing emails"
     },
     {

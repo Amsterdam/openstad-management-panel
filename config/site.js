@@ -236,16 +236,11 @@ exports.configSchema = {
   notifications : [
     {
       key: 'fromAddress',
-      type: 'string',
-      default: '',
+      type: 'dropdown',
+      options: process.env.WHITELISTED_EMAILS.split('\n'),
+      default: process.env.WHITELISTED_EMAILS.split('\n')[0],
       label: 'From e-mail address',
       trim: true,
-      validation: [
-        {
-          name: 'pattern',
-          value: /.*/ // email is almost impossible to validate with a regex
-        }
-      ]
     },
     {
       key: 'projectmanagerAddress',
