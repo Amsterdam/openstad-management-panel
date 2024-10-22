@@ -1,3 +1,5 @@
+const whitelistedEmails = process.env.WHITELISTED_EMAILS.split('\n').slice(0, -1);
+
 exports.configSchema = {
   project: [
     {
@@ -143,8 +145,9 @@ exports.configSchema = {
     {
       parentKey: 'ideas',
       key: 'from',
-      type: 'string', // todo: add type email/list of emails
-      default: '',
+      type: 'dropdown',
+      options: whitelistedEmails,
+      default: whitelistedEmails[0],
       label: "From Address"
     },
     {
@@ -167,8 +170,9 @@ exports.configSchema = {
     {
       parentKey: 'ideas',
       key: 'from',
-      type: 'string', // todo: add type email/list of emails
-      default: '',
+      type: 'dropdown',
+      options: whitelistedEmails,
+      default: whitelistedEmails[0],
       label: "From Address"
     },
     {
@@ -191,8 +195,9 @@ exports.configSchema = {
     {
       parentKey: 'ideas',
       key: 'from',
-      type: 'string', // todo: add type email/list of emails
-      default: '',
+      type: 'dropdown',
+      options: whitelistedEmails,
+      default: whitelistedEmails[0],
       label: "From Address"
     },
     {
@@ -236,16 +241,11 @@ exports.configSchema = {
   notifications : [
     {
       key: 'fromAddress',
-      type: 'string',
-      default: '',
+      type: 'dropdown',
+      options: whitelistedEmails,
+      default: whitelistedEmails[0],
       label: 'From e-mail address',
       trim: true,
-      validation: [
-        {
-          name: 'pattern',
-          value: /.*/ // email is almost impossible to validate with a regex
-        }
-      ]
     },
     {
       key: 'projectmanagerAddress',

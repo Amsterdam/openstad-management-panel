@@ -1,0 +1,16 @@
+<select name="{{ fieldName }}" class="form-control" required>
+    {% set hasFieldValue = fieldValue in field.options %}
+  
+    {% if hasFieldValue %}
+      {% for option in field.options %}
+        <option value="{{ option }}" {% if option == fieldValue %}selected{% endif %}>
+          {{ option }}
+        </option>
+      {% endfor %}
+    {% else %}
+      <option value="{{ fieldValue }}" selected>{{ fieldValue }}</option>
+      {% for option in field.options %}
+        <option value="{{ option }}">{{ option }}</option>
+      {% endfor %}
+    {% endif %}
+  </select>

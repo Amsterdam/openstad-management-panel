@@ -155,15 +155,12 @@
             </div>
             <div>
               <div class="form-group">
-                <label for="">E-mail</label>
-                <input
-                class="form-control"
-                placeholder="Bijv. javabrug@amsterdam.nl"
-                type="email"
-                value=""
-                name="fromEmail"
-                required
-                />
+                <label for="email-select">E-mail</label>
+                <select class="form-control" id="email-select" name="fromEmail" required>
+                  {% for email in whitelistedEmails %}
+                    <option value="{{ email }}">{{ email }}</option>
+                  {% endfor %}
+                </select>
               </div>
               <div>
                 <div class="form-group">
